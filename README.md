@@ -43,10 +43,11 @@ Create a .env file in the project root and add your Instagram credentials:
 
 #### d. Database Setup:
 In the db folder, there is a file named db.sql. Use this file to create the necessary database schema:
+        
         mysql -u your_mysql_user -p your_mysql_database < db/db.sql
 
 
-#### d. Running the Application:
+#### e. Running the Application:
         python app.py
 
 
