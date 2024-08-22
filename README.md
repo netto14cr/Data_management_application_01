@@ -18,7 +18,7 @@ This web application, built with Python and Flask, provides a comprehensive solu
 
 #### Clone the Repository:
 
-        https://github.com/netto14cr/InstaMetrics.git
+        https://github.com/netto14cr/Data_management_application_01.git
 
 #### a. Environment Variables:
 Create a .env file in the project root and add your Instagram credentials:
@@ -40,6 +40,10 @@ Create a .env file in the project root and add your Instagram credentials:
         source venv/bin/activate  # For Linux/Mac
         .\venv\Scripts\activate   # For Windows
         pip install -r requirements.txt
+
+#### d. Database Setup:
+In the db folder, there is a file named db.sql. Use this file to create the necessary database schema:
+        mysql -u your_mysql_user -p your_mysql_database < db/db.sql
 
 
 #### d. Running the Application:
@@ -144,5 +148,5 @@ Create a .env file in the project root and add your Instagram credentials:
 ![Image from question 11](screenshots/screenshot11.png)
 
 
-## 3. More information:
+## 5. More information:
 *This project is licensed under the MIT License - see the LICENSE file for details.*
