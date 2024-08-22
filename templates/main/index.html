@@ -1,0 +1,88 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<div class="row">
+    <!-- Formulario de Entrada de Datos -->
+    <div class="col-lg-4 col-12">
+        <a href="{{ url_for('data_entry') }}">
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <div class="icon">
+                        <i class="nav-icon fas fa-keyboard"></i>
+                    </div>
+                    <p>Excel Data Entry</p>
+                    <h3>Enter Data</h3>
+                </div>
+                <a href="{{ url_for('data_entry') }}" class="small-box-footer">Go to Form <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </a>
+    </div>
+    
+    <!-- Formulario de Entrada de Datos a Google Sheets -->
+    <div class="col-lg-4 col-12">
+        <a href="{{ url_for('data_entry_sheets') }}">
+            <div class="small-box bg-primary">
+                <div class="inner">
+                    <div class="icon">
+                        <i class="nav-icon fas fa-file"></i>
+                    </div>
+                    <p>Google Sheets Data Entry</p>
+                    <h3>Enter Data</h3>
+                </div>
+                <a href="{{ url_for('data_entry_sheets') }}" class="small-box-footer">Go to Form <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </a>
+    </div>
+    
+    <!-- Formulario de Entrada de Datos a MySQL -->
+    <div class="col-lg-4 col-12">
+        <a href="{{ url_for('data_entry_mysql') }}">
+            <div class="small-box bg-dark">
+                <div class="inner">
+                    <div class="icon">
+                        <i class="nav-icon fas fa-user-check"></i>
+                    </div>
+                    <p>MySQL Data Entry</p>
+                    <h3>Enter Data</h3>
+                </div>
+                <a href="{{ url_for('data_entry_mysql') }}" class="small-box-footer">Go to Form <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </a>
+    </div>
+
+    <!-- Administración de Google Sheets -->
+    <div class="col-lg-4 col-12">
+        <a href="{{ url_for('manage_sheets') }}">
+            <div class="small-box bg-danger">
+                <div class="inner">
+                    <div class="icon">
+                        <i class="nav-icon fas fa-table"></i>
+                    </div>
+                    <p>Manage Sheets</p>
+                    <h3>Admin Sheets</h3>
+                </div>
+                <a href="{{ url_for('manage_sheets') }}" class="small-box-footer">Go to Form <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </a>
+    </div>
+
+    <!-- Administración de Datos en la Nube -->
+    <div class="col-lg-4 col-12">
+        <a href="{{ url_for('cloud_data') }}">
+            <div class="small-box bg-gradient-white">
+                <div class="inner">
+                    <div class="icon">
+                        <i class="nav-icon fas fa-cloud"></i>
+                    </div>
+                    <p>Manage Cloud Data</p>
+                    <h3>Admin Cloud</h3>
+                </div>
+                <a href="{{ url_for('cloud_data') }}" class="small-box-footer">Go to Data <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </a>
+    </div>
+
+
+
+</div>
+{% endblock %}

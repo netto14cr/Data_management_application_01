@@ -1,0 +1,26 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+    <h1>View Sheet: <i>{{ sheet_name }}</i> </h1>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped dataTable">
+        <thead>
+            <tr>
+                {% for header in data[0] %}
+                    <th>{{ header }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data[1:] %}
+                <tr>
+                    {% for cell in row %}
+                        <td>{{ cell }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('manage_sheets') }}" class="btn btn-primary">Volver a Manage</a>
+    </div>
+{% endblock %}
