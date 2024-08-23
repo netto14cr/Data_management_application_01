@@ -120,28 +120,71 @@ In the db folder, there is a file named db.sql. Use this file to create the nece
 
 ## 4. Screenshots:
 
+### Homepage
+Shows the main page of the application with menu options and buttons for navigating the project.
 ![Image from question 1](screenshots/screenshot1.png)
 
+
+### Excel Data Entry Form
+Displays the form used for entering data into an Excel sheet.
 ![Image from question 2](screenshots/screenshot2.png)
 
+
+### Completed Excel Data Entry
+Shows the completed form for Excel data entry alongside an .xlsx file displaying the stored data.
 ![Image from question 3](screenshots/screenshot3.png)
 
+
+### MySQL Data Entry Form
+Displays the form for entering data into a MySQL database.
 ![Image from question 4](screenshots/screenshot4.png)
 
+
+### Completed MySQL Data Entry
+Shows the completed MySQL data entry form with correct data input.
 ![Image from question 5](screenshots/screenshot5.png)
 
+
+### Google Sheets Management
+Features a table listing existing Google Sheets documents, with options to view, manage, and download each document.
 ![Image from question 6](screenshots/screenshot6.png)
 
+
+### Google Sheets Document View
+Shows a selected Google Sheets document in a tabular format with options to return, download, delete, or edit.
 ![Image from question 7](screenshots/screenshot7.png)
 
+
+### Google Sheets Data Entry Form
+Displays the form for entering data into a Google Sheets document.
 ![Image from question 8](screenshots/screenshot8.png)
 
+
+### Editing Google Sheets Entry
+Shows the form for editing an existing Google Sheets entry, with fields for updating the document's data.
 ![Image from question 9](screenshots/screenshot9.png)
 
+
+### Google Sheets Entry and Download
+Illustrates the Google Sheets entry form and an open .xlsx file showing the downloaded data.
 ![Image from question 10](screenshots/screenshot10.png)
 
+
+### Cloud Data Management
+Features a table displaying documents created through the MySQL data entry form, with options to view, edit, or delete.
 ![Image from question 11](screenshots/screenshot11.png)
 
 
-## 5. More information:
-*This project is licensed under the MIT License - see the LICENSE file for details.*
+### Editing Cloud Data Record
+Shows the form for editing a cloud-stored record, with options to update fields and cancel or confirm changes.
+![Image from question 12](screenshots/screenshot12.png)
+
+
+### Database Record View
+Displays a record view with details from the database, demonstrating that the record is stored correctly.
+![Image from question 13](screenshots/screenshot13.png)
+
+
+
+## 5. LICENSE:
+This project is licensed under the MIT License for educational use only. For professional or commercial use, please obtain proper licensing. See the LICENSE file for more details.
