@@ -3,3 +3,4 @@ venv/
 .env
 google/key/
 env/
+.vercel/
