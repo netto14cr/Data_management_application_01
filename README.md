@@ -185,6 +185,22 @@ Displays a record view with details from the database, demonstrating that the re
 ![Image from question 13](screenshots/screenshot13.png)
 
 
+### PWA Installation Prompt
+Shows that the application supports installation as a Progressive Web App (PWA) on devices, including Windows, Android, or iOS, and displays the option or prompt to install the app on the device.
+
+![Image from question 14](screenshots/screenshot14.png)
+
+
+### PWA on Windows
+Displays the application installed on a Windows computer, demonstrating its appearance as a Progressive Web App (PWA).
+
+![Image from question 15](screenshots/screenshot15.png)
+
+
+### PWA on Mobile Devices
+Shows the application on mobile devices, highlighting its responsive design and adjustment to different screen sizes and orientations.
+
+![Image from question 16](screenshots/screenshot16.png)
 
 ## 5. LICENSE:
 This project is licensed under the MIT License for educational use only. For professional or commercial use, please obtain proper licensing. See the LICENSE file for more details.
