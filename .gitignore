@@ -4,3 +4,4 @@ venv/
 google/key/
 env/
 .vercel/
+__pycache__/
