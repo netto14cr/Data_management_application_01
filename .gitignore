@@ -6,3 +6,4 @@ env/
 .vercel/
 google/__pycache__/
 models/__pycache__/
+myfiles.py

@@ -1,0 +1,40 @@
+{
+  "short_name": "Data Management Application v1",
+  "name": "Data Management App",
+  "icons": [
+    {
+      "src": "/static/image/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/static/image/logo48.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "/static/image/logo96.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "/static/image/logo144.png",
+      "type": "image/png",
+      "sizes": "144x144"
+    },
+    {
+      "src": "/static/image/logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/static/image/logo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#333333",
+  "background_color": "#ffffff"
+}

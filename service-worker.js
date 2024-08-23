@@ -1,0 +1,72 @@
+const CACHE_NAME = 'data-management-app-v1';
+const urlsToCache = [
+    '/',
+    'app.py',
+    'db',
+    'google',
+    'LICENSE.txt',
+    'manifest.json',
+    'myfiles.py',
+    'README.md',
+    'requirements.txt',
+    'static/img/favicon.ico',
+    'static/img/ios-splash-1170x2532.jpg',
+    'static/img/logo144.png',
+    'static/img/logo192.png',
+    'static/img/logo48.png',
+    'static/img/logo512.png',
+    'static/img/logo96.png',
+    'templates/cloud/cloud_data.html',
+    'templates/cloud/edit_cloud_data.html',
+    'templates/cloud/view_row.html',
+    'templates/form/data_entry.html',
+    'templates/form/data_entry_mysql.html',
+    'templates/form/data_entry_sheets.html',
+    'templates/header/navbar.html',
+    'templates/main/base.html',
+    'templates/main/error.html',
+    'templates/main/index.html',
+    'templates/sheets/edit_sheet_data.html',
+    'templates/sheets/manage_sheets.html',
+    'templates/sheets/view_sheet_data.html',
+];
+
+self.addEventListener('install', (event) => {
+    event.waitUntil(
+        caches.open(CACHE_NAME)
+            .then((cache) => {
+                console.log('Opened cache');
+                return cache.addAll(urlsToCache);
+            })
+            .catch((error) => {
+                console.error('Failed to open cache:', error);
+            })
+    );
+});
+
+self.addEventListener('activate', (event) => {
+    event.waitUntil(
+        caches.keys().then((cacheNames) => {
+            return Promise.all(
+                cacheNames.map((cacheName) => {
+                    if (cacheName !== CACHE_NAME) {
+                        console.log('Deleting old cache:', cacheName);
+                        return caches.delete(cacheName);
+                    }
+                })
+            );
+        })
+    );
+});
+
+self.addEventListener('fetch', (event) => {
+    event.respondWith(
+        caches.match(event.request)
+            .then((response) => {
+                return response || fetch(event.request)
+                    .catch(() => {
+                        return caches.match('/offline.html'); // Fallback page
+                    });
+            })
+    );
+});
