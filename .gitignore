@@ -2,3 +2,4 @@ static/excel_data/
 venv/
 .env
 google/key/
+env/

@@ -1,6 +1,21 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, send_file
-from threading import Timer
+import os
+import time
 import webbrowser
+import threading
+import webview
+from flask import Flask, render_template, request, redirect, url_for, flash, send_file
+from googleapiclient.discovery import build
+from googleapiclient.http import MediaIoBaseDownload
+from google.oauth2 import service_account
+import io
+
+
+import time
+from flask import Flask, render_template, request, redirect, url_for, flash, send_file
+import webbrowser
+import threading
+import webview
+from threading import Timer
 from google.google_sheets import save_to_sheets, create_spreadsheet
 from models.excel_handler import ExcelHandler
 from models.connection import MySQLDatabase
@@ -10,7 +25,6 @@ from google.google_list_sheets import GoogleSheetsManager
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseDownload
 from google.oauth2 import service_account
-import io
 
 import os
 from dotenv import load_dotenv
@@ -254,6 +268,26 @@ def update_data(record_id):
     return redirect(url_for('view_data', record_id=record_id))
 
 
+# Set the port for the Flask application
+PORT = 5000
+
+def run_flask():
+    app.run(port=PORT, debug=True, use_reloader=False)
+
+def open_browser():
+    url = f"http://127.0.0.1:{PORT}/"
+    webbrowser.open_new(url)
+
+def open_webview():
+    # Ensure webview is running in a separate thread
+    webview.create_window('Flask App', f'http://127.0.0.1:{PORT}/', resizable=True, maximized=True)
+    webview.start()
+
 if __name__ == '__main__':
-    app.run(debug=True)
-    Timer(2, lambda: webbrowser.open('http://127.0.0.1:5000/')).start()
+    # Verifica si no estamos en una re-carga automática
+    if not os.environ.get("WERKZEUG_RUN_MAIN"):
+        # Abre el navegador después de un breve retraso para dar tiempo al servidor
+        threading.Timer(2, open_browser).start()  # Espera 2 segundos antes de abrir el navegador
+    
+    # Ejecuta el servidor Flask en el hilo principal
+    app.run(port=PORT, debug=True)
