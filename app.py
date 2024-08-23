@@ -284,10 +284,10 @@ def open_webview():
     webview.start()
 
 if __name__ == '__main__':
-    # Verifica si no estamos en una re-carga automática
+    # Check if the server is running in the main thread
     if not os.environ.get("WERKZEUG_RUN_MAIN"):
-        # Abre el navegador después de un breve retraso para dar tiempo al servidor
-        threading.Timer(2, open_browser).start()  # Espera 2 segundos antes de abrir el navegador
+        # Open the webview in a separate thread
+        threading.Timer(2, open_browser).start()  # Wait for 2 seconds before opening the browser
     
-    # Ejecuta el servidor Flask en el hilo principal
+    # Run the Flask app in a separate thread
     app.run(port=PORT, debug=True)
