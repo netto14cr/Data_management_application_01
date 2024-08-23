@@ -59,3 +59,62 @@ class GoogleSheetsManager:
         except HttpError as err:
             print(f"Error: {err}")
             return 'Unknown'
+        
+    def get_record_data(self, spreadsheet_id, record_id, range_name='Sheet1'):
+        """
+        Obtiene los datos de una fila específica (registro) en una hoja de Google Sheets.
+
+        :param spreadsheet_id: El ID de la hoja de cálculo.
+        :param record_id: El nombre o índice del registro que deseas obtener.
+        :param range_name: El nombre del rango, por defecto 'Sheet1'.
+        :return: Los datos de la fila especificada como una lista.
+        """
+        try:
+            # Obtener todos los datos de la hoja
+            result = self.sheets_service.spreadsheets().values().get(spreadsheetId=spreadsheet_id, range=range_name).execute()
+            values = result.get('values', [])
+
+            # Buscar la fila cuyo primer valor coincida con record_id
+            for row in values:
+                if row[0] == record_id:
+                    return row
+
+            print(f"Error: El registro con ID '{record_id}' no fue encontrado.")
+            return []
+        except HttpError as err:
+            print(f"Error: {err}")
+            return []
+        
+    def update_record(self, spreadsheet_id, record_id, updated_data, range_name='Sheet1'):
+        try:
+            # Obtener todos los datos de la hoja
+            result = self.sheets_service.spreadsheets().values().get(spreadsheetId=spreadsheet_id, range=range_name).execute()
+            values = result.get('values', [])
+    
+            # Buscar la fila cuyo primer valor coincida con record_id
+            for i, row in enumerate(values):
+                if row[0] == record_id:
+                    # Define el rango de celdas para actualizar (asumiendo que se actualizan todas las columnas)
+                    num_columns = len(updated_data)
+                    range_to_update = f"{range_name}!A{i+1}:{chr(65 + num_columns - 1)}{i+1}"
+                    body = {
+                        'values': [updated_data]
+                    }
+                    self.sheets_service.spreadsheets().values().update(
+                        spreadsheetId=spreadsheet_id,
+                        range=range_to_update,
+                        valueInputOption='RAW',
+                        body=body
+                    ).execute()
+                    return True
+    
+            print(f"Error: El registro con ID '{record_id}' no fue encontrado.")
+            return False
+        except HttpError as err:
+            print(f"Error: {err}")
+            return False
+    
+    
+
+
+

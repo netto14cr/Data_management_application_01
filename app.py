@@ -19,7 +19,7 @@ from dotenv import load_dotenv
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 
-# Instancia del gestor de Google Sheets
+# Initialize the Google Sheets Manager
 sheets_manager = GoogleSheetsManager()
 
 @app.route('/')
@@ -33,16 +33,19 @@ def manage_sheets():
 
 @app.route('/view_sheet_data/<file_id>')
 def view_sheet_data(file_id):
-    # Obtener datos de la hoja
+    # Obtener los datos desde el sheet
+    sheets_manager = GoogleSheetsManager()
     data = sheets_manager.get_sheet_data(file_id)
     
-    # Obtener el nombre del archivo
+    # Obtener el nombre del sheet
     sheet_name = sheets_manager.get_sheet_name(file_id)
     
-    return render_template('sheets/view_sheet_data.html', data=data, sheet_name=sheet_name)
-
-
-
+    # Renderizar el template con los datos y el ID de la hoja
+    return render_template('sheets/view_sheet_data.html', 
+                           data=data, 
+                           sheet_name=sheet_name, 
+                           spreadsheet_id=file_id, 
+                           zip=zip)
 
 @app.route('/download_sheet/<file_id>')
 def download_sheet(file_id):
@@ -54,7 +57,7 @@ def download_sheet(file_id):
     service = build('drive', 'v3', credentials=creds)
     
     try:
-        # Obtener la metadata del archivo y prepararse para la descarga
+        # Get the file from Google Drive
         request = service.files().export_media(fileId=file_id, mimeType='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
         fh = io.BytesIO()
         downloader = MediaIoBaseDownload(fh, request)
@@ -83,6 +86,58 @@ def delete_sheet(file_id):
 
 
 
+@app.route('/edit_sheet_data/<spreadsheet_id>/<record_id>', methods=['GET', 'POST'])
+def edit_sheet_data(spreadsheet_id, record_id):
+    sheets_manager = GoogleSheetsManager()
+
+    if request.method == 'POST':
+        # Recibir datos del formulario
+        updated_data = [
+            request.form['Name'],
+            request.form['Email'],
+            request.form['Age'],
+            request.form['Phone'],
+            request.form['Address']
+        ]
+        success = sheets_manager.update_record(spreadsheet_id, record_id, updated_data)
+        if success:
+            return redirect(url_for('view_sheet_data', file_id=spreadsheet_id))
+        else:
+            return "Error updating record", 500
+
+    # Para la solicitud GET, cargar los datos existentes
+    data = sheets_manager.get_record_data(spreadsheet_id, record_id)
+    if data:
+        # Los datos deben ser un diccionario en lugar de una lista de tuplas
+        headers = ['Name', 'Email', 'Age', 'Phone', 'Address']
+        # Combina encabezados con datos en un diccionario para la plantilla
+        data_dict = dict(zip(headers, data))
+        return render_template('sheets/edit_sheet_data.html', data=data_dict, record_id=record_id, spreadsheet_id=spreadsheet_id)
+    else:
+        return "Record not found", 404
+
+
+
+
+
+@app.route('/update_sheet_data/<record_id>', methods=['POST'])
+def update_sheet_data(record_id):
+    # Obtener los datos del formulario
+    updated_data = {
+        'name': request.form['name'],
+        'email': request.form['email'],
+        'age': request.form['age'],
+        'phone': request.form['phone'],
+        'address': request.form['address']
+    }
+    
+    # Actualizar los datos en la hoja
+    sheets_manager.update_record_data(record_id, updated_data)
+    
+    return redirect(url_for('view_sheet_data', file_id=record_id))
+
+
+
 @app.route('/data_entry', methods=['GET', 'POST'])
 def data_entry():
     if request.method == 'POST':
@@ -96,7 +151,7 @@ def data_entry():
 
         if entry.is_valid():
             # Save data to Excel
-            excel_handler = ExcelHandler()  # Aquí se usa la clase con la dirección predeterminada
+            excel_handler = ExcelHandler()  # Create an instance of the ExcelHandler class
             excel_handler.save_data([entry.name, entry.age, entry.email, entry.phone, entry.address])
 
             flash('Data submitted and saved to Excel successfully!', 'success')
@@ -163,14 +218,14 @@ def manage_data():
     all_data = db.get_all_data()
     return render_template('cloud/cloud_data.html', data=all_data)
 
-# Endpoint para ver detalles de un dato específico
+# Endpoint For Viewing a Specific Record
 @app.route('/view_cloud_data/<int:record_id>')
 def view_data(record_id):
     db = MySQLDatabase()
     data = db.get_data_by_id(record_id)
     return render_template('cloud/view_row.html', data=data)
 
-# Endpoint para eliminar un dato específico
+# Endpoint for Deleting a Specific Record
 @app.route('/delete_cloud_data/<int:record_id>', methods=['POST'])
 def delete_data(record_id):
     db = MySQLDatabase()

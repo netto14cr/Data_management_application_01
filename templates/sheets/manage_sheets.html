@@ -16,10 +16,7 @@
                         <td>{{ sheet.name }}</td>
                         <td>
                             <a href="{{ url_for('view_sheet_data', file_id=sheet.id) }}" class="btn btn-info">View</a>
-                            <a href="{{ url_for('download_sheet', file_id=sheet.id) }}" class="btn btn-primary">Download</a>
-                            <form action="{{ url_for('delete_sheet', file_id=sheet.id) }}" method="post" style="display:inline;">
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
+                            <a href="{{ url_for('download_sheet', file_id=sheet.id) }}" class="btn btn-light">Download</a>
                         </td>
                     </tr>
                 {% endfor %}

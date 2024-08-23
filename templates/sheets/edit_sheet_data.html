@@ -1,0 +1,17 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+    <h1>Edit Sheet Data for Record ID: <i>{{ record_id }}</i></h1>
+    <form method="post" action="{{ url_for('edit_sheet_data', spreadsheet_id=spreadsheet_id, record_id=record_id) }}">
+        <div class="form-group">
+            {% set headers = ['Name', 'Email', 'Age', 'Phone', 'Address'] %}
+            {% for header in headers %}
+                <label for="{{ header }}">{{ header }}</label>
+                <!-- Usa el diccionario de datos para obtener los valores -->
+                <input type="text" class="form-control" name="{{ header }}" id="{{ header }}" value="{{ data[header] }}" required>
+            {% endfor %}
+        </div>
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <a href="{{ url_for('view_sheet_data', file_id=spreadsheet_id) }}" class="btn btn-secondary">Cancel</a>
+    </form>
+{% endblock %}

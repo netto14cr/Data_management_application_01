@@ -35,19 +35,13 @@ Create a .env file in the project root and add your Instagram credentials:
         .\env\Scripts\activate   # For Windows
         pip install -r requirements.txt
 
-#### c. Install Dependencies:
-        python -m venv venv
-        source venv/bin/activate  # For Linux/Mac
-        .\venv\Scripts\activate   # For Windows
-        pip install -r requirements.txt
-
-#### d. Database Setup:
+#### c. Database Setup:
 In the db folder, there is a file named db.sql. Use this file to create the necessary database schema:
         
         mysql -u your_mysql_user -p your_mysql_database < db/db.sql
 
 
-#### e. Running the Application:
+#### d. Running the Application:
         python app.py
 
 

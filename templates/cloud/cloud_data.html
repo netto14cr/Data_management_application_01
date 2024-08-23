@@ -7,10 +7,6 @@
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Email</th>
-                    <th>Age</th>
-                    <th>Phone</th>
-                    <th>Address</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -18,13 +14,9 @@
                 {% for item in data %}
                     <tr>
                         <td>{{ item.name }}</td>
-                        <td>{{ item.email }}</td>
-                        <td>{{ item.age }}</td>
-                        <td>{{ item.phone }}</td>
-                        <td>{{ item.address }}</td>
                         <td>
                             <a href="{{ url_for('view_data', record_id=item.id) }}" class="btn btn-info">View</a>
-                            <a href="{{ url_for('edit_data', record_id=item.id) }}" class="btn btn-warning">Edit</a>
+                            <a href="{{ url_for('edit_data', record_id=item.id) }}" class="btn btn-dark">Edit</a>
                             <form action="{{ url_for('delete_data', record_id=item.id) }}" method="post" style="display:inline;">
                                 <button type="submit" class="btn btn-danger">Delete</button>
                             </form>

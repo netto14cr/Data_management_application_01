@@ -30,3 +30,5 @@ class ExcelHandler:
         # Append the new data
         sheet.append(data)
         workbook.save(self.file_path)
+        
+    
