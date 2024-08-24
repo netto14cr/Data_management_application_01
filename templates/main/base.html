@@ -19,11 +19,11 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="DataApp">
-    <link rel="apple-touch-icon" href="/static/image/logo512.png" />
-    <link rel="manifest" href="/static/manifest.json" />
+    <link rel="apple-touch-icon" href="/static/pwa/image/logo512.png" />
+    <link rel="manifest" href="/static/pwa/manifest.json" />
 
     <!-- Splash Screens for iOS -->
-    <link rel="apple-touch-startup-image" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3)" href="/static/image/ios-splash-1170x2532.jpg">
+    <link rel="apple-touch-startup-image" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3)" href="/static/pwa/image/ios-splash-1170x2532.jpg">
     <!-- Agrega más splash screens aquí según los dispositivos que desees soportar -->
     <script src="https://unpkg.com/htmx.org@1.9.4"></script>
 </head>
@@ -58,7 +58,7 @@
 <script>
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
-            navigator.serviceWorker.register('/static/service-worker.js')
+            navigator.serviceWorker.register('/static/pwa/service-worker.js')
             .then(function(registration) {
                 console.log('ServiceWorker registrado con éxito:', registration.scope);
             }, function(error) {
