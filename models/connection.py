@@ -21,7 +21,10 @@ class MySQLDatabase:
                 user=self.user,
                 password=self.password
             )
-            return connection
+            if connection.is_connected():
+                return connection
+            else:
+                raise Exception("Connection to database failed.")
         except Error as e:
             print(f"Error: {e}")
             return None
@@ -41,7 +44,6 @@ class MySQLDatabase:
             finally:
                 cursor.close()
                 connection.close()
-                
                 
     def get_data_by_id(self, record_id):
         connection = self.connect()

@@ -3,7 +3,7 @@ import time
 import webbrowser
 import threading
 import webview
-from flask import Flask, render_template, request, redirect, url_for, flash, send_file
+from flask import Flask, render_template, request, redirect, url_for, flash, send_file, jsonify
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseDownload
 from google.oauth2 import service_account
@@ -224,22 +224,26 @@ def data_entry_mysql():
 def cloud_data():
     db = MySQLDatabase()
     all_data = db.get_all_data()
+    if not all_data:
+        return render_template('main/error_500.html', message="No data available or database error.")
     return render_template('cloud/cloud_data.html', data=all_data)
 
-@app.route('/cloud_data', endpoint='manage_data')
+@app.route('/manage_data', endpoint='manage_data')
 def manage_data():
     db = MySQLDatabase()
     all_data = db.get_all_data()
+    if not all_data:
+        return render_template('main/error_500.html', message="No data available or database error.")
     return render_template('cloud/cloud_data.html', data=all_data)
 
-# Endpoint For Viewing a Specific Record
 @app.route('/view_cloud_data/<int:record_id>')
 def view_data(record_id):
     db = MySQLDatabase()
     data = db.get_data_by_id(record_id)
+    if not data:
+        return render_template('main/error_500.html', message="Data not found or database error.")
     return render_template('cloud/view_row.html', data=data)
 
-# Endpoint for Deleting a Specific Record
 @app.route('/delete_cloud_data/<int:record_id>', methods=['POST'])
 def delete_data(record_id):
     db = MySQLDatabase()
@@ -266,6 +270,15 @@ def update_data(record_id):
     db = MySQLDatabase()
     db.update_data(record_id, name, email, age, phone, address)
     return redirect(url_for('view_data', record_id=record_id))
+
+# Error handling route
+@app.errorhandler(500)
+def internal_error(error):
+    return render_template('main/error_500.html', message="Internal server error."), 500
+
+@app.errorhandler(404)
+def not_found_error(error):
+    return render_template('main/error_404.html', message="Page not found."), 404
 
 
 # Set the port for the Flask application
