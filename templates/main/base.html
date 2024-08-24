@@ -20,11 +20,17 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="DataApp">
     <link rel="apple-touch-icon" href="/static/pwa/image/logo512.png" />
-    <link rel="manifest" href="/static/pwa/manifest.json" />
+    <link rel="manifest" href="/static/pwa/service/manifest.json" />
 
     <!-- Splash Screens for iOS -->
-    <link rel="apple-touch-startup-image" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3)" href="/static/pwa/image/ios-splash-1170x2532.jpg">
+    <link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 1)" href="/static/pwa/image/ios-splash-320x480.png">
+    <link rel="apple-touch-startup-image" media="(device-width: 640px) and (device-height: 1136px) and (-webkit-device-pixel-ratio: 2)" href="/static/pwa/image/ios-splash-640x1136.png">
+    <link rel="apple-touch-startup-image" media="(device-width: 750px) and (device-height: 1334px) and (-webkit-device-pixel-ratio: 2)" href="/static/pwa/image/ios-splash-750x1334.png">
+    <link rel="apple-touch-startup-image" media="(device-width: 1242px) and (device-height: 2208px) and (-webkit-device-pixel-ratio: 3)" href="/static/pwa/image/ios-splash-1242x2208.png">
+    <link rel="apple-touch-startup-image" media="(device-width: 1125px) and (device-height: 2436px) and (-webkit-device-pixel-ratio: 3)" href="/static/pwa/image/ios-splash-1125x2436.png">
+    <link rel="apple-touch-startup-image" media="(device-width: 828px) and (device-height: 1792px) and (-webkit-device-pixel-ratio: 2)" href="/static/pwa/image/ios-splash-828x1792.png">
     <!-- Agrega más splash screens aquí según los dispositivos que desees soportar -->
+
     <script src="https://unpkg.com/htmx.org@1.9.4"></script>
 </head>
 <body class="sidebar-mini layout-fixed">
@@ -58,7 +64,7 @@
 <script>
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
-            navigator.serviceWorker.register('/static/pwa/service-worker.js')
+            navigator.serviceWorker.register('/static/pwa/service/service-worker.js')
             .then(function(registration) {
                 console.log('ServiceWorker registrado con éxito:', registration.scope);
             }, function(error) {
