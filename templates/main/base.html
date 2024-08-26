@@ -52,27 +52,8 @@
 <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
-<script>
-    $(document).ready(function() {
-        $('.dataTable').DataTable({
-            responsive: true
-        });
-    });
-</script>
-
-<!-- Registro del Service Worker -->
-<script>
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-            navigator.serviceWorker.register('/static/pwa/service/service-worker.js')
-            .then(function(registration) {
-                console.log('ServiceWorker registrado con éxito:', registration.scope);
-            }, function(error) {
-                console.log('Fallo al registrar el ServiceWorker:', error);
-            });
-        });
-    }
-</script>
+<!-- Carga el script externo -->
+<script src="/static/js/script.js"></script>
 
 </body>
 </html>

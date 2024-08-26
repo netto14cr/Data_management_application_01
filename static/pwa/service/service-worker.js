@@ -1,20 +1,6 @@
 const CACHE_NAME = 'data-management-app-v1';
 const urlsToCache = [
     '/',
-    'app.py',
-    'google/google_list_sheets.py',
-    'google/google_sheets.py',
-    'models/connection.py',
-    'models/data_entry.py',
-    'models/excel_handler.py',
-    'static/pwa',
-    'templates/cloud',
-    'templates/form',
-    'templates/header',
-    'templates/main',
-    'templates/sheets',
-    'static/pwa/image',
-    'static/pwa/service',
     'static/pwa/image/favicon.ico',
     'static/pwa/image/ios-splash-1170x2532.jpg',
     'static/pwa/image/logo144.png',
@@ -22,6 +8,7 @@ const urlsToCache = [
     'static/pwa/image/logo48.png',
     'static/pwa/image/logo512.png',
     'static/pwa/image/logo96.png',
+    '/static/js/script.js',
     'static/pwa/service/manifest.json',
     'static/pwa/service/service-worker.js',
     'templates/cloud/cloud_data.html',
@@ -38,6 +25,7 @@ const urlsToCache = [
     'templates/sheets/edit_sheet_data.html',
     'templates/sheets/manage_sheets.html',
     'templates/sheets/view_sheet_data.html',
+    '/offline.html' // Fallback page
 ];
 
 self.addEventListener('install', (event) => {
@@ -72,10 +60,12 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
         caches.match(event.request)
             .then((response) => {
-                return response || fetch(event.request)
-                    .catch(() => {
-                        return caches.match('/offline.html'); // Fallback page
-                    });
+                if (response) {
+                    return response;
+                }
+                return fetch(event.request).catch(() => {
+                    return caches.match('/offline.html'); // Fallback page
+                });
             })
     );
 });
