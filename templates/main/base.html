@@ -29,7 +29,7 @@
     <link rel="apple-touch-startup-image" media="(device-width: 1242px) and (device-height: 2208px) and (-webkit-device-pixel-ratio: 3)" href="/static/pwa/image/ios-splash-1242x2208.png">
     <link rel="apple-touch-startup-image" media="(device-width: 1125px) and (device-height: 2436px) and (-webkit-device-pixel-ratio: 3)" href="/static/pwa/image/ios-splash-1125x2436.png">
     <link rel="apple-touch-startup-image" media="(device-width: 828px) and (device-height: 1792px) and (-webkit-device-pixel-ratio: 2)" href="/static/pwa/image/ios-splash-828x1792.png">
-    <!-- Agrega más splash screens aquí según los dispositivos que desees soportar -->
+    <!-- Add the manifest to the home screen -->
 
     <script src="https://unpkg.com/htmx.org@1.9.4"></script>
 </head>
@@ -43,7 +43,7 @@
     </div>
 </div>
 
-<!-- jQuery y otros scripts -->
+<!-- jQuery y and Popper.js -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -52,8 +52,16 @@
 <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
-<!-- Carga el script externo -->
+<!-- Load the script for the app -->
 <script src="/static/js/script.js"></script>
+
+<!--- Load the script for install app -->
+<script src="/static/js/intall_app.js"></script>
+
+
+
+
+
 
 </body>
 </html>

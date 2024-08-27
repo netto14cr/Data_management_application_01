@@ -9,6 +9,7 @@ const urlsToCache = [
     'static/pwa/image/logo512.png',
     'static/pwa/image/logo96.png',
     '/static/js/script.js',
+    '/static/js/install_app.js',
     'static/pwa/service/manifest.json',
     'static/pwa/service/service-worker.js',
     'templates/cloud/cloud_data.html',

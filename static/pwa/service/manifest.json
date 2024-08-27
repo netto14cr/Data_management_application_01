@@ -1,6 +1,6 @@
 {
   "short_name": "Data Management Application v1",
-  "name": "Data Management App",
+  "name": "Data Mgmt App",
   "icons": [
     {
       "src": "/static/pwa/image/favicon.ico",

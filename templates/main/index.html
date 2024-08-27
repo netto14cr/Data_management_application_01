@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="row">
-    <!-- Formulario de Entrada de Datos -->
+    <!-- Input for Data Entry -->
     <div class="col-lg-4 col-12">
         <a href="{{ url_for('data_entry') }}">
             <div class="small-box bg-info">
@@ -18,7 +18,7 @@
         </a>
     </div>
     
-    <!-- Formulario de Entrada de Datos a Google Sheets -->
+    <!-- Input de Datos en Google Sheets -->
     <div class="col-lg-4 col-12">
         <a href="{{ url_for('data_entry_sheets') }}">
             <div class="small-box bg-primary">
@@ -34,7 +34,7 @@
         </a>
     </div>
     
-    <!-- Formulario de Entrada de Datos a MySQL -->
+    <!-- Mysql Data Management -->
     <div class="col-lg-4 col-12">
         <a href="{{ url_for('data_entry_mysql') }}">
             <div class="small-box bg-dark">
@@ -50,7 +50,7 @@
         </a>
     </div>
 
-    <!-- Administración de Google Sheets -->
+    <!-- Google Sheets Data Management -->
     <div class="col-lg-4 col-12">
         <a href="{{ url_for('manage_sheets') }}">
             <div class="small-box bg-danger">
@@ -66,7 +66,7 @@
         </a>
     </div>
 
-    <!-- Administración de Datos en la Nube -->
+    <!-- Cloud Data Management -->
     <div class="col-lg-4 col-12">
         <a href="{{ url_for('cloud_data') }}">
             <div class="small-box bg-gradient-white">
@@ -82,23 +82,19 @@
         </a>
     </div>
 
-    <!-- ADD opction for install APP-->
+    <!-- ADD option for install APP-->
     <div class="col-lg-4 col-12">
-        <a href="{{ url_for('cloud_data') }}">
-            <div class="small-box bg-lightblue">
-                <div class="inner">
-                    <div class="icon">
-                        <i class="nav-icon fas fa-download"></i>
-                    </div>
-                    <p>Install Our App</p>
-                <h3>Get the App</h3>
+        <div class="small-box bg-lightblue" id="installBox">
+            <div class="inner">
+                <div class="icon">
+                    <i class="nav-icon fas fa-download"></i>
                 </div>
-                <a href="#" id="installAppButton" class="small-box-footer">Install App <i class="fas fa-arrow-circle-right"></i></a>
+                <p>Install Our App</p>
+                <h3>Get the App</h3>
             </div>
-        </a>
-    </div>
-
-
-
+            <!-- Main install button -->
+            <div class="small-box-footer">Install App <i class="fas fa-arrow-circle-right"></i></div>
+        </div>
+    </div>    
 </div>
 {% endblock %}

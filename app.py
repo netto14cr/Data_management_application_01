@@ -3,7 +3,7 @@ import time
 import webbrowser
 import threading
 import webview
-from flask import Flask, render_template, request, redirect, url_for, flash, send_file, jsonify
+from flask import Flask, render_template, request, redirect, url_for, flash, send_file, send_from_directory
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseDownload
 from google.oauth2 import service_account
@@ -279,6 +279,11 @@ def internal_error(error):
 @app.errorhandler(404)
 def not_found_error(error):
     return render_template('main/error_404.html', message="Page not found."), 404
+
+
+@app.route('/service-worker.js')
+def service_worker():
+    return send_from_directory('static', 'service-worker.js', mimetype='application/javascript')
 
 
 # Set the port for the Flask application
