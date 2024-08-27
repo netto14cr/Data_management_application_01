@@ -15,8 +15,11 @@
                     <tr>
                         <td>{{ sheet.name }}</td>
                         <td>
-                            <a href="{{ url_for('view_sheet_data', file_id=sheet.id) }}" class="btn btn-info">View</a>
-                            <a href="{{ url_for('download_sheet', file_id=sheet.id) }}" class="btn btn-light">Download</a>
+                            <!-- Use Bootstrap classes for responsive button layout -->
+                            <div class="btn-group d-flex flex-column flex-sm-row" role="group" aria-label="Actions">
+                                <a href="{{ url_for('view_sheet_data', file_id=sheet.id) }}" class="btn btn-info mb-2 mb-sm-0 me-sm-2">View</a>
+                                <a href="{{ url_for('download_sheet', file_id=sheet.id) }}" class="btn btn-light">Download</a>
+                            </div>
                         </td>
                     </tr>
                 {% endfor %}
